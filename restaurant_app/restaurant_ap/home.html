@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+    <h1>Популярные блюда</h1>
+    <ul>
+        {% for dish in dishes %}
+        <li>
+            <a href="{% url 'dish_detail' dish.id %}">{{ dish.name }}</a>
+            - {{ dish.price }} ₽
+        </li>
+        {% empty %}
+        <li>Блюд нет в наличии.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

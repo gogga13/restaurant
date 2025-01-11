@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Меню</title>
+</head>
+<body>
+    <h1>Меню</h1>
+    <ul>
+        {% for category in categories %}
+        <li>
+            {{ category.name }}
+            <ul>
+                {% for dish in category.dishes.all %}
+                <li>
+                    <a href="{% url 'dish_detail' dish.id %}">{{ dish.name }}</a> - {{ dish.price }} ₽
+                </li>
+                {% empty %}
+                <li>Блюд в этой категории нет.</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% empty %}
+        <li>Категории отсутствуют.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
