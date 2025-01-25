@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Menu</h1>
+    <div>
+        {% for category in categories %}
+            <h2>{{ category.name }}</h2>
+            <p>{{ category.description }}</p>
+            <ul>
+                {% for dish in category.dishes.all %}
+                    <li>
+                        <img src="{{ dish.image.url }}" alt="{{ dish.name }}" style="width:100px; height:100px;">
+                        <h3>{{ dish.name }} - ${{ dish.price }}</h3>
+                        <p>{{ dish.description }}</p>
+                        <form action="{% url 'add_to_cart' dish.id %}" method="post">
+                            {% csrf_token %}
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

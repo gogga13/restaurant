@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чайний лист</title>
+    <link rel="stylesheet" href="{% static 'css/tea.css' %}">
+</head>
+<body>
+    <h1>Чайний лист</h1>
+    <a href="{% url 'bar_page' %}"><button>Назад до Бару</button></a>
+
+    <div>
+        {% for category in tea_categories %}
+            <h2>{{ category.name }}</h2>
+            <p>{{ category.description }}</p>
+            <ul>
+                {% for tea in category.dishes.all %}
+                    <li>
+                        <img src="{{ tea.image.url }}" alt="{{ tea.name }}" style="width:100px; height:100px;">
+                        <h3>{{ tea.name }} - ${{ tea.price }}</h3>
+                        <p>{{ tea.description }}</p>
+                        <p><strong>Інгредієнти:</strong> {{ tea.ingredients }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+</body>
+</html>

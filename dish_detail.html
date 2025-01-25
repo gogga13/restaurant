@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ dish.name }}</title>
+</head>
+<body>
+    <h1>{{ dish.name }}</h1>
+    <p>{{ dish.description }}</p>
+    <p>Інгредієнти: {{ dish.ingredients }}</p>
+    <p>Цена: {{ dish.price }} ₽</p>
+    {% if dish.image %}
+    <img src="{{ dish.image.url }}" alt="{{ dish.name }}">
+    {% else %}
+    <p>Фото отсутствует.</p>
+    {% endif %}
+</body>
+</html>
